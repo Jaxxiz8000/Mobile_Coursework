@@ -77,8 +77,8 @@ public class AddHolidayForm extends AppCompatActivity implements DatePickerFragm
                 final Button holidayEndDate = findViewById(R.id.pick_date_end);
                 hol_end_date = holidayEndDate.getText().toString();
 
-                holidayDAO.addHoliday(setHoliday(holiday_name, holiday_details, hol_start_date, hol_end_date));
-                //HolidayContent.addHolidayItem(holiday_name, holiday_details, hol_start_date, hol_end_date);
+                //holidayDAO.addHoliday(setHoliday(holiday_name, holiday_details, hol_start_date, hol_end_date));
+                HolidayContent.addHolidayItem(holiday_name, holiday_details, hol_start_date, hol_end_date);
 
                 holidayName.setText("");
                 holidayDetails.setText("");

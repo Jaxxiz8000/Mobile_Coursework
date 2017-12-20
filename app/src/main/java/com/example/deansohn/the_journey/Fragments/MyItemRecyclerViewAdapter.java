@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.deansohn.the_journey.Fragments.itemListFragment.OnListFragmentInteractionListener;
+import com.example.deansohn.the_journey.HolidayContent;
 import com.example.deansohn.the_journey.HolidayContent.HolidayItem;
 import com.example.deansohn.the_journey.Model.Holiday;
 import com.example.deansohn.the_journey.R;
@@ -21,7 +22,7 @@ import java.util.List;
  */
 public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecyclerViewAdapter.ViewHolder> {
 
-    private final List<Holiday> mValues;
+    private final List<HolidayContent.HolidayItem> mValues;
     private final OnListFragmentInteractionListener mListener;
 
 //    public MyItemRecyclerViewAdapter(List<HolidayItem> items, OnListFragmentInteractionListener listener) {
@@ -29,7 +30,7 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
 //        mListener = listener;
 //    }
 
-    public MyItemRecyclerViewAdapter(List<Holiday> items, OnListFragmentInteractionListener listener) {
+    public MyItemRecyclerViewAdapter(List<HolidayContent.HolidayItem> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -44,8 +45,8 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).getId());
-        holder.mContentView.setText(mValues.get(position).getHoliday_name());
+        holder.mIdView.setText(mValues.get(position).holiday_item_id);
+        holder.mContentView.setText(mValues.get(position).holiday_Name);
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,8 +54,8 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
                 if (null != mListener) {
                     // Notify the active callbacks interface (the activity, if the
                     // fragment is attached to one) that an item has been selected.
-                    Holiday item = holder.mItem;
-                    mListener.onListFragmentInteraction(item);
+                    //Holiday item = holder.mItem;
+                    mListener.onListFragmentInteraction(holder.mItem);
                 }
             }
         });
@@ -69,7 +70,7 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
         public final View mView;
         public final TextView mIdView;
         public final TextView mContentView;
-        public Holiday mItem;
+        public HolidayContent.HolidayItem mItem;
 
         public ViewHolder(View view) {
             super(view);

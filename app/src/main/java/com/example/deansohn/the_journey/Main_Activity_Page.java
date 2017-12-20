@@ -15,7 +15,6 @@ import android.widget.Toast;
 import com.example.deansohn.the_journey.DB.DBHelper;
 import com.example.deansohn.the_journey.Fragments.itemListFragment;
 import com.example.deansohn.the_journey.Fragments.item_detailsFragment;
-import com.example.deansohn.the_journey.Model.Holiday;
 
 import java.io.Serializable;
 
@@ -99,7 +98,7 @@ public class Main_Activity_Page extends AppCompatActivity
     }
 
     @Override
-    public void onListFragmentInteraction(Holiday item) {
+    public void onListFragmentInteraction(HolidayContent.HolidayItem item) {
         Toast.makeText(this, "You clicked " + item.toString(),
                 Toast.LENGTH_LONG).show();
 
@@ -122,4 +121,5 @@ public class Main_Activity_Page extends AppCompatActivity
         // commit transaction
         transaction.commit();
     }
+
 }

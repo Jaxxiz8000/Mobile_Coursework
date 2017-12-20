@@ -11,8 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.deansohn.the_journey.DB.holiday_data_AO;
-import com.example.deansohn.the_journey.Model.Holiday;
-import com.example.deansohn.the_journey.Model.HolidayData;
+import com.example.deansohn.the_journey.HolidayContent;
 import com.example.deansohn.the_journey.R;
 
 /**
@@ -51,7 +50,6 @@ public class itemListFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
         }
@@ -71,11 +69,10 @@ public class itemListFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            holidayDAO = new holiday_data_AO(context);
-            //recyclerView.setAdapter(new MyItemRecyclerViewAdapter(HolidayContent.HOLIDAY_ITEMS, mListener));
+            //holidayDAO = new holiday_data_AO(context);
+            recyclerView.setAdapter(new MyItemRecyclerViewAdapter(HolidayContent.HOLIDAY_ITEMS, mListener));
             //recyclerView.setAdapter(new MyItemRecyclerViewAdapter(holidayDAO.getHolidays(), mListener));
-            recyclerView.setAdapter(new MyItemRecyclerViewAdapter(HolidayData.getInstance(context).getHolidays()
-                    , mListener));
+            //recyclerView.setAdapter(new MyItemRecyclerViewAdapter(HolidayData.getInstance(context).getHolidays(), mListener));
 
         }
         return view;
@@ -111,6 +108,6 @@ public class itemListFragment extends Fragment {
      */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(Holiday item);
+        void onListFragmentInteraction(HolidayContent.HolidayItem item);
     }
 }
