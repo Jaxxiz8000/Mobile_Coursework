@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.deansohn.the_journey.DB.holiday_data_AO;
@@ -29,16 +30,13 @@ public class item_detailsFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "Item";
-    //private static final String ARG_PARAM2 = "param2";
+
 
     // TODO: Rename and change type parameters
     //private DummyContent.DummyItem item;
-    private HolidayContent.HolidayItem item;
+    private Holiday item;
     private holiday_data_AO holidayDAO;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-   // private String mParam2;
 
     private OnFragmentInteractionListener mListener;
 
@@ -51,15 +49,13 @@ public class item_detailsFragment extends Fragment {
      * this fragment using the provided parameters.
      *
      * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
      * @return A new instance of fragment item_detailsFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static item_detailsFragment newInstance(String param1, String param2) {
+    public static item_detailsFragment newInstance(String param1) {
         item_detailsFragment fragment = new item_detailsFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
-        //args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -69,8 +65,7 @@ public class item_detailsFragment extends Fragment {
         super.onCreate(savedInstanceState);
         holidayDAO = new holiday_data_AO(getContext());
         if (getArguments() != null) {
-            item = (HolidayContent.HolidayItem) getArguments().getSerializable(ARG_PARAM1);
-
+            item = (Holiday) getArguments().getSerializable(ARG_PARAM1);
         }
     }
 
@@ -81,13 +76,17 @@ public class item_detailsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_item_details, container, false);
 
         TextView titleField = view.findViewById(R.id.titleView);
-        titleField.setText(item.holiday_Name);
+        titleField.setText(item.getHoliday_name());
         TextView detailsField = view.findViewById(R.id.detailsView);
-        detailsField.setText(item.holiday_Details);
-        TextView holStartDate = view.findViewById(R.id.startDate);
-        holStartDate.setText(item.holiday_start_date);
-        TextView holEndDate = view.findViewById(R.id.endDate);
-        holEndDate.setText(item.holiday_end_date);
+        detailsField.setText(item.getHoliday_description());
+        TextView startDateTextMessage = view.findViewById(R.id.startDateText);
+        startDateTextMessage.setText(R.string.startDateText);
+        Button holStartDate = view.findViewById(R.id.startDate);
+        holStartDate.setText(item.getHolStartDate());
+        TextView endDateTextMessage = view.findViewById(R.id.endDateText);
+        endDateTextMessage.setText(R.string.endDateText);
+        Button holEndDate = view.findViewById(R.id.endDate);
+        holEndDate.setText(item.getHolEndDate());
 
         return view;
     }
@@ -95,7 +94,7 @@ public class item_detailsFragment extends Fragment {
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+            mListener.onFragmentInteraction(item);
         }
     }
 
@@ -120,7 +119,7 @@ public class item_detailsFragment extends Fragment {
     public void onResume() {
         super.onResume();
         //String title = getActivity().getResources().getString(R.string.itemTitle);
-        getActivity().setTitle(item.holiday_Name);
+        getActivity().setTitle(item.getHoliday_name());
     }
 
     /**
@@ -135,6 +134,6 @@ public class item_detailsFragment extends Fragment {
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+        void onFragmentInteraction(Holiday item);
     }
 }

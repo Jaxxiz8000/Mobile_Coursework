@@ -7,6 +7,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -62,7 +63,7 @@ public class AddHolidayForm extends AppCompatActivity implements DatePickerFragm
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Holiday added", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
 
                 final EditText holidayName = findViewById(R.id.holidayNameInput);
@@ -76,6 +77,12 @@ public class AddHolidayForm extends AppCompatActivity implements DatePickerFragm
 
                 final Button holidayEndDate = findViewById(R.id.pick_date_end);
                 hol_end_date = holidayEndDate.getText().toString();
+
+                //Log.d("Clicked item ID: ", " " + id);
+                Log.d("Clicked item Name: ", " " + holiday_name);
+                Log.d("Clicked item desc: ", " " + holiday_details);
+                Log.d("Clicked item stDate: ", " " + hol_start_date);
+                Log.d("Clicked item enDate: ", " " + hol_end_date);
 
                 holidayDAO.addHoliday(setHoliday(holiday_name, holiday_details, hol_start_date, hol_end_date));
                 //HolidayContent.addHolidayItem(holiday_name, holiday_details, hol_start_date, hol_end_date);
@@ -122,12 +129,12 @@ public class AddHolidayForm extends AppCompatActivity implements DatePickerFragm
 
     }
 
-    private Holiday setHoliday(String holName, String startDate, String endDate, String description) {
+    private Holiday setHoliday(String holName, String description, String startDate, String endDate) {
         Holiday newHoliday = new Holiday();
         newHoliday.setHoliday_name(holName);
+        newHoliday.setHoliday_description(description);
         newHoliday.setHolStartDate(startDate);
         newHoliday.setHolEndDate(endDate);
-        newHoliday.setHoliday_description(description);
 
         return newHoliday;
     }
