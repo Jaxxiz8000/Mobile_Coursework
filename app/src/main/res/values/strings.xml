@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">The_journey</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="itemTitle">Item title!</string>
+    <string name="startDateText">Start Date: </string>
+    <string name="endDateText">End Date: </string>
+    <string name="defaultDate">dd/MM/yyyy</string>
+    <string name="defaultTitleText">No Title Found: </string>
+    <string name="defaultDetailsText">No details Found: </string>
+    <string name="feedBackTitle">Add a new Holiday</string>
+    <string name="inputHolidayNameHint">Input holiday name: \"Spain\"</string>
+    <string name="inputDetailsHint">Input holiday details...</string>
+    <string name="feedbackbutton">Add Holiday!</string>
+    <string name="title_activity_add_holiday_form">AddHolidayForm</string>
+    <string name="add_holiday_btn_text">Add Holiday Now!</string>
+    <string name="ListPageBtn">Go to List Fragment</string>
+    <string name="holidayStartDateInput">Start Date</string>
+    <string name="add_hol">Add Holiday</string>
+    <string name="title_activity_main__fragment">MainActivity_Fragment</string>
+
+</resources>
