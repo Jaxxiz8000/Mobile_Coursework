@@ -1,17 +1,14 @@
 package com.example.deansohn.the_journey.Model;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
 import java.io.Serializable;
 
 /**
  * Created by DESOHN on 04/12/2017.
  */
 
-public class Holiday {
+public class Holiday implements Serializable {
 
-    private int id;
+    private Integer id;
     private String holiday_name;
     private String holStartDate;
     private String holEndDate;
@@ -20,7 +17,7 @@ public class Holiday {
     public Holiday() {
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -34,6 +31,14 @@ public class Holiday {
 
     public void setHoliday_name(String holiday_name) {
         this.holiday_name = holiday_name;
+    }
+
+    public String getHoliday_description() {
+        return holiday_description;
+    }
+
+    public void setHoliday_description(String holiday_description) {
+        this.holiday_description = holiday_description;
     }
 
     public String getHolStartDate() {
@@ -52,11 +57,4 @@ public class Holiday {
         this.holEndDate = holEndDate;
     }
 
-    public String getHoliday_description() {
-        return holiday_description;
-    }
-
-    public void setHoliday_description(String holiday_description) {
-        this.holiday_description = holiday_description;
-    }
 }

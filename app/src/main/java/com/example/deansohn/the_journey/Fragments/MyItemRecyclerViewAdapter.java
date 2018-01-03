@@ -1,6 +1,8 @@
 package com.example.deansohn.the_journey.Fragments;
 
+import android.annotation.SuppressLint;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,11 +26,6 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
     private final List<Holiday> mValues;
     private final OnListFragmentInteractionListener mListener;
 
-//    public MyItemRecyclerViewAdapter(List<HolidayItem> items, OnListFragmentInteractionListener listener) {
-//        mValues = items;
-//        mListener = listener;
-//    }
-
     public MyItemRecyclerViewAdapter(List<Holiday> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
@@ -41,19 +38,41 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
         return new ViewHolder(view);
     }
 
+    @SuppressLint("LongLogTag")
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).getId());
+        String id = String.valueOf(mValues.get(position).getId());
+        String desc = mValues.get(position).getHoliday_description();
+        String startDate = mValues.get(position).getHolStartDate();
+        String endDate = mValues.get(position).getHolEndDate();
+
+        holder.mIdView.setText(id);
         holder.mContentView.setText(mValues.get(position).getHoliday_name());
+        Log.d("Value of mIdView: ", " " + id);
+
+        Log.d("item inBindV desc: ", " " + desc);
+        Log.d("item inBindV stDate: ", " " + startDate);
+        Log.d("item inBinV enDate: ", " " + endDate);
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("LongLogTag")
             @Override
             public void onClick(View v) {
                 if (null != mListener) {
                     // Notify the active callbacks interface (the activity, if the
                     // fragment is attached to one) that an item has been selected.
                     Holiday item = holder.mItem;
+                    String id = String.valueOf(item.getId());
+                    String name = item.getHoliday_name();
+                    String desc = item.getHoliday_description();
+                    String startDate = item.getHolStartDate();
+                    String endDate = item.getHolEndDate();
+                    Log.d("item in OnClick ID: ", " " + id);
+                    Log.d("item in OnClick  Name: ", " " + name);
+                    Log.d("item in OnClick  desc: ", " " + desc);
+                    Log.d("item in OnClick  stDate: ", " " + startDate);
+                    Log.d("item in OnClick  enDate: ", " " + endDate);
                     mListener.onListFragmentInteraction(item);
                 }
             }

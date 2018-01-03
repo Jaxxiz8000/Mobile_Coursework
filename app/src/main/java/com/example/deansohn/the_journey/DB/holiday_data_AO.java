@@ -52,16 +52,19 @@ public class holiday_data_AO extends holiday_db_AO {
             holiday.setId(cursor.getInt(0));
             holiday.setHoliday_name(cursor.getString(1));
             holiday.setHoliday_description(cursor.getString(2));
-            try {
-                holiday.setHolStartDate(String.valueOf(formatter.parse(cursor.getString(3))));
-                holiday.setHolEndDate(String.valueOf(formatter.parse(cursor.getString(4))));
-            } catch (ParseException e) {
-                holiday.setHolStartDate(null);
-                holiday.setHolEndDate(null);
-            }
+            holiday.setHolStartDate(cursor.getString(3));
+            holiday.setHolEndDate(cursor.getString(4));
+//            try {
+//
+//            } catch (ParseException e) {
+//                holiday.setHolStartDate(null);
+//                holiday.setHolEndDate(null);
+//            }
 
             holidays.add(holiday);
         }
         return holidays;
     }
+
+
 }

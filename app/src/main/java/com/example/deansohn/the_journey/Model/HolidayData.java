@@ -39,16 +39,13 @@ public class HolidayData {
 
     }
 
-    private static void addItemToArrayAndMap(Holiday item) {
-        holidays.add(item);
-        HOLIDAY_ITEM_MAP.put(item.getId(), item);
-    }
-
-    public ArrayList<Holiday> getHolidays() {
+    public List<Holiday> getHolidays() {
 
         holidays = holidayDAO.getHolidays();
 
-        return (ArrayList<Holiday>) holidays;
+        return holidays;
     }
+
+
 }
 

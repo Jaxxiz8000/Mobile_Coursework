@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -46,15 +47,6 @@ public class Main_Activity_Page extends AppCompatActivity
 
         });
 
-//        FloatingActionButton fab = findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
-
         //Create new Fragment to be placed in activity layout
         itemListFragment firstFragment = new itemListFragment();
 
@@ -93,22 +85,27 @@ public class Main_Activity_Page extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onFragmentInteraction(Uri uri) {
-
-    }
 
     @Override
     public void onListFragmentInteraction(Holiday item) {
-        Toast.makeText(this, "You clicked " + item.toString(),
+        Toast.makeText(this, "You clicked " + item.getHoliday_name(),
                 Toast.LENGTH_LONG).show();
-
+        String id = String.valueOf(item.getId());
+        String name = item.getHoliday_name();
+        String desc = item.getHoliday_description();
+        String startDate = item.getHolStartDate();
+        String endDate = item.getHolEndDate();
+        Log.d("Clicked item ID: ", " " + id);
+        Log.d("Clicked item Name: ", " " + name);
+        Log.d("Clicked item desc: ", " " + desc);
+        Log.d("Clicked item stDate: ", " " + startDate);
+        Log.d("Clicked item enDate: ", " " + endDate);
         // create new fragment,
         item_detailsFragment newFragment = new item_detailsFragment();
 
         // add argument specifying the item it should show
         Bundle args = new Bundle();
-        args.putSerializable("Item", (Serializable) item);
+        args.putSerializable("Item", item);
         newFragment.setArguments(args);
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -121,5 +118,10 @@ public class Main_Activity_Page extends AppCompatActivity
 
         // commit transaction
         transaction.commit();
+    }
+
+    @Override
+    public void onFragmentInteraction(Holiday item) {
+
     }
 }
