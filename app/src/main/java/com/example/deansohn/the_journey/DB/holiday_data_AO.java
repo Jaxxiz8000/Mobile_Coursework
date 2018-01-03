@@ -67,4 +67,7 @@ public class holiday_data_AO extends holiday_db_AO {
     }
 
 
+    public void deleteHolidayByID(int id) {
+        database.delete(DBHelper.HOLIDAY_TABLE, DBHelper.ID_COLUMN+"="+id, null);
+    }
 }

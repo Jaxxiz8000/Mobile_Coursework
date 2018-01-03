@@ -20,5 +20,6 @@
     <string name="holidayStartDateInput">Start Date</string>
     <string name="add_hol">Add Holiday</string>
     <string name="title_activity_main__fragment">MainActivity_Fragment</string>
+    <string name="DeleteHolButton">Delete Holiday</string>
 
 </resources>
