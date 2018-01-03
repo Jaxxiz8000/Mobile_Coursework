@@ -3,7 +3,9 @@ package com.example.deansohn.the_journey.Fragments;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -87,6 +89,21 @@ public class item_detailsFragment extends Fragment {
         endDateTextMessage.setText(R.string.endDateText);
         Button holEndDate = view.findViewById(R.id.endDate);
         holEndDate.setText(item.getHolEndDate());
+
+        final int id = item.getId();
+        Log.d("Holiday ID: ", " " + id);
+
+        Button deleteButton = view.findViewById(R.id.delete_holiday_button);
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Snackbar.make(v, " " + id , Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+
+                holidayDAO.deleteHolidayByID(id);
+
+            }
+        });
 
         return view;
     }

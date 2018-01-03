@@ -87,7 +87,13 @@
                 android:text="@string/defaultDate" />
 
         </RelativeLayout>
-
+        <Button
+            android:id="@+id/delete_holiday_button"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content"
+            android:text="@string/DeleteHolButton"
+            style="@style/Widget.AppCompat.Button.Colored"/>
     </LinearLayout>
 </ScrollView>
 
