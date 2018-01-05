@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.deansohn.the_journey.Fragments.itemListFragment.OnListFragmentInteractionListener;
-import com.example.deansohn.the_journey.HolidayContent.HolidayItem;
 import com.example.deansohn.the_journey.Model.Holiday;
 import com.example.deansohn.the_journey.R;
 
@@ -17,16 +16,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * {@link RecyclerView.Adapter} that can display a {@link HolidayItem} and makes a call to the
+ * {@link RecyclerView.Adapter} that can display a {@link } and makes a call to the
  * specified {@link OnListFragmentInteractionListener}.
  * TODO: Replace the implementation with code for your data type.
  */
 public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecyclerViewAdapter.ViewHolder> {
 
-    private final List<Holiday> mValues;
-    private final OnListFragmentInteractionListener mListener;
+    private List<Holiday> mValues;
+    private OnListFragmentInteractionListener mListener;
 
-    public MyItemRecyclerViewAdapter(List<Holiday> items, OnListFragmentInteractionListener listener) {
+    MyItemRecyclerViewAdapter(List<Holiday> items, OnListFragmentInteractionListener listener) {
+        mValues = items;
+        mListener = listener;
+    }
+
+    void replaceList(List<Holiday> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -63,16 +67,7 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
                     // Notify the active callbacks interface (the activity, if the
                     // fragment is attached to one) that an item has been selected.
                     Holiday item = holder.mItem;
-                    String id = String.valueOf(item.getId());
-                    String name = item.getHoliday_name();
-                    String desc = item.getHoliday_description();
-                    String startDate = item.getHolStartDate();
-                    String endDate = item.getHolEndDate();
-                    Log.d("item in OnClick ID: ", " " + id);
-                    Log.d("item in OnClick  Name: ", " " + name);
-                    Log.d("item in OnClick  desc: ", " " + desc);
-                    Log.d("item in OnClick  stDate: ", " " + startDate);
-                    Log.d("item in OnClick  enDate: ", " " + endDate);
+
                     mListener.onListFragmentInteraction(item);
                 }
             }
@@ -85,12 +80,12 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public final View mView;
-        public final TextView mIdView;
-        public final TextView mContentView;
-        public Holiday mItem;
+        final View mView;
+        final TextView mIdView;
+        final TextView mContentView;
+        Holiday mItem;
 
-        public ViewHolder(View view) {
+        ViewHolder(View view) {
             super(view);
             mView = view;
             mIdView = view.findViewById(R.id.id);

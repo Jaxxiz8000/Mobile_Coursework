@@ -23,6 +23,10 @@
             android:name=".AddHolidayForm"
             android:label="@string/title_activity_add_holiday_form"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Holiday_Edit_details_activity"
+            android:label="@string/title_activity_holiday__edit_details_activity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
