@@ -1,24 +1,27 @@
 package com.example.deansohn.the_journey.Fragments;
 
+import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.deansohn.the_journey.DB.holiday_data_AO;
-import com.example.deansohn.the_journey.HolidayContent;
 import com.example.deansohn.the_journey.Model.Holiday;
 import com.example.deansohn.the_journey.R;
-import com.example.deansohn.the_journey.dummy.DummyContent;
-
-import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,7 +31,7 @@ import java.util.ArrayList;
  * Use the {@link item_detailsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class item_detailsFragment extends Fragment {
+public class item_detailsFragment extends Fragment implements DatePickerFragment.datePickerListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "Item";
@@ -38,28 +41,25 @@ public class item_detailsFragment extends Fragment {
     //private DummyContent.DummyItem item;
     private Holiday item;
     private holiday_data_AO holidayDAO;
+    private Holiday editedHoliday;
 
+    private EditText holidayNameEditText;
+    private EditText holidayDetailsEditText;
+
+
+    TextView detailsField;
+    TextView titleField;
+    Button holStartDate;
+    Button holEndDate;
+    Boolean dateStartText;
+    Boolean dateEndText;
+
+    item_detailsFragment thisFragm = this;
 
     private OnFragmentInteractionListener mListener;
 
     public item_detailsFragment() {
         // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @return A new instance of fragment item_detailsFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static item_detailsFragment newInstance(String param1) {
-        item_detailsFragment fragment = new item_detailsFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        fragment.setArguments(args);
-        return fragment;
     }
 
     @Override
@@ -75,19 +75,23 @@ public class item_detailsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_item_details, container, false);
+        //View view = inflater.inflate(R.layout.fragment_item_details, container, false);
+        View view = inflater.inflate(R.layout.fragment_edit_item_details, container, false);
 
-        TextView titleField = view.findViewById(R.id.titleView);
+        titleField = view.findViewById(R.id.titleView);
         titleField.setText(item.getHoliday_name());
-        TextView detailsField = view.findViewById(R.id.detailsView);
+
+        detailsField = view.findViewById(R.id.detailsView);
         detailsField.setText(item.getHoliday_description());
+
         TextView startDateTextMessage = view.findViewById(R.id.startDateText);
         startDateTextMessage.setText(R.string.startDateText);
-        Button holStartDate = view.findViewById(R.id.startDate);
+        holStartDate = view.findViewById(R.id.startDate);
         holStartDate.setText(item.getHolStartDate());
+
         TextView endDateTextMessage = view.findViewById(R.id.endDateText);
         endDateTextMessage.setText(R.string.endDateText);
-        Button holEndDate = view.findViewById(R.id.endDate);
+        holEndDate = view.findViewById(R.id.endDate);
         holEndDate.setText(item.getHolEndDate());
 
         final int id = item.getId();
@@ -104,6 +108,66 @@ public class item_detailsFragment extends Fragment {
 
             }
         });
+
+        Button update_holiday_info =  view.findViewById(R.id.update_holiday_button);
+        update_holiday_info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Holiday Updated", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+
+                final String newholidayName;
+                newholidayName = titleField.getText().toString();
+
+                final String holidayDetails;
+                holidayDetails = detailsField.getText().toString();
+
+                final String holidayStartDate;
+                holidayStartDate = holStartDate.getText().toString();
+
+                final String holidayEndDate;
+                holidayEndDate = holEndDate.getText().toString();
+
+                final int id = item.getId();
+
+                //Log.d("Clicked item ID: ", " " + id);
+                Log.d("Clicked item Name: ", " " + newholidayName);
+                Log.d("Clicked item desc: ", " " + holidayDetails);
+                Log.d("Clicked item stDate: ", " " + holidayStartDate);
+                Log.d("Clicked item enDate: ", " " + holidayEndDate);
+
+                holidayDAO.updateHoliday(setHoliday(newholidayName,
+                        holidayDetails, holidayStartDate, holidayEndDate), id);
+            }
+        });
+
+        holStartDate.setOnClickListener(new View.OnClickListener() {
+
+
+            @Override
+            public void onClick(View view) {
+                FragmentManager fm = getChildFragmentManager();
+                DialogFragment picker = new DatePickerFragment();
+                picker.setTargetFragment(thisFragm, 0);
+                picker.show(fm, "datePicker");
+                dateStartText = true;
+                dateEndText = false;
+
+            }
+        });
+
+//        holEndDate.setOnClickListener(new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View view) {
+//                //FragmentManager fm = getChildFragmentManager();
+//                DialogFragment picker = new DatePickerFragment();
+//                picker.show(getActivity().getSupportFragmentManager(), "datePicker");
+//                dateStartText = false;
+//                dateEndText = true;
+//
+//            }
+//        });
 
         return view;
     }
@@ -139,6 +203,14 @@ public class item_detailsFragment extends Fragment {
         getActivity().setTitle(item.getHoliday_name());
     }
 
+    @Override
+    public void returnDate(String date) {
+        if (dateStartText)
+            holStartDate.setText(date);
+        else if (dateEndText)
+            holEndDate.setText(date);
+    }
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -152,5 +224,15 @@ public class item_detailsFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Holiday item);
+    }
+
+    private Holiday setHoliday(String holName, String description, String startDate, String endDate) {
+        Holiday newHoliday = new Holiday();
+        newHoliday.setHoliday_name(holName);
+        newHoliday.setHoliday_description(description);
+        newHoliday.setHolStartDate(startDate);
+        newHoliday.setHolEndDate(endDate);
+
+        return newHoliday;
     }
 }

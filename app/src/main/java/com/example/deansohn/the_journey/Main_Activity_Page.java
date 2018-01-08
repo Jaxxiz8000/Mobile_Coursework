@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -24,38 +25,13 @@ public class Main_Activity_Page extends AppCompatActivity
         implements itemListFragment.OnListFragmentInteractionListener,
         item_detailsFragment.OnFragmentInteractionListener {
 
-    private Button launchAddholiday;
     private DBHelper mHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main___page);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        createAndRestartCode();
 
-        mHelper = new DBHelper(this);
-
-        launchAddholiday = findViewById(R.id.add_holiday_btn_text);
-
-        launchAddholiday.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-                launchActivityAddHoliday();
-            }
-
-        });
-
-        //Create new Fragment to be placed in activity layout
-        itemListFragment firstFragment = new itemListFragment();
-
-        // In case the activity was started with special instructions
-        // Intent, pass the intents extras to the fragment arguments
-        firstFragment.setArguments(getIntent().getExtras());
-
-        // Add fragment to the fragment container frame layout
-        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, firstFragment).commit();
     }
 
     private void launchActivityAddHoliday() {
@@ -95,33 +71,51 @@ public class Main_Activity_Page extends AppCompatActivity
         String desc = item.getHoliday_description();
         String startDate = item.getHolStartDate();
         String endDate = item.getHolEndDate();
-        Log.d("Clicked item ID: ", " " + id);
-        Log.d("Clicked item Name: ", " " + name);
-        Log.d("Clicked item desc: ", " " + desc);
-        Log.d("Clicked item stDate: ", " " + startDate);
-        Log.d("Clicked item enDate: ", " " + endDate);
         // create new fragment,
-        item_detailsFragment newFragment = new item_detailsFragment();
+        //item_detailsFragment newFragment = new item_detailsFragment();
+        Intent detailsIntent = new Intent(this, Holiday_Edit_details_activity.class);
 
         // add argument specifying the item it should show
-        Bundle args = new Bundle();
-        args.putSerializable("Item", item);
-        newFragment.setArguments(args);
-
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-
-        // Replace whatever is in fragment container view with this fragment,
-        // and add transaction to the back stack so the user can navigate back
-
-        transaction.replace(R.id.fragment_container, newFragment);
-        transaction.addToBackStack(null);
-
-        // commit transaction
-        transaction.commit();
+        detailsIntent.putExtra("Item", item);
+        startActivity(detailsIntent);
     }
 
     @Override
     public void onFragmentInteraction(Holiday item) {
 
+    }
+
+    public void onRestart() {
+        super.onRestart();
+        createAndRestartCode();
+    }
+
+    public void createAndRestartCode() {
+        setContentView(R.layout.activity_main___page);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        mHelper = new DBHelper(this);
+
+        Button launchAddholiday = findViewById(R.id.add_holiday_btn_text);
+
+        launchAddholiday.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                launchActivityAddHoliday();
+            }
+
+        });
+
+        //Create new Fragment to be placed in activity layout
+        itemListFragment firstFragment = new itemListFragment();
+
+        // In case the activity was started with special instructions
+        // Intent, pass the intents extras to the fragment arguments
+        firstFragment.setArguments(getIntent().getExtras());
+
+        // Add fragment to the fragment container frame layout
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, firstFragment).commit();
     }
 }

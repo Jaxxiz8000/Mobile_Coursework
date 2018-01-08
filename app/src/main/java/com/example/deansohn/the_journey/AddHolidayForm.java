@@ -1,11 +1,13 @@
 package com.example.deansohn.the_journey;
 
+import android.annotation.SuppressLint;
 import android.support.v4.app.DialogFragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -34,6 +36,9 @@ public class AddHolidayForm extends AppCompatActivity implements DatePickerFragm
     Holiday holiday = null;
     private holiday_data_AO holidayDAO;
 
+    RecyclerView recyclerView;
+
+    @SuppressLint("CutPasteId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,14 +83,7 @@ public class AddHolidayForm extends AppCompatActivity implements DatePickerFragm
                 final Button holidayEndDate = findViewById(R.id.pick_date_end);
                 hol_end_date = holidayEndDate.getText().toString();
 
-                //Log.d("Clicked item ID: ", " " + id);
-                Log.d("Clicked item Name: ", " " + holiday_name);
-                Log.d("Clicked item desc: ", " " + holiday_details);
-                Log.d("Clicked item stDate: ", " " + hol_start_date);
-                Log.d("Clicked item enDate: ", " " + hol_end_date);
-
                 holidayDAO.addHoliday(setHoliday(holiday_name, holiday_details, hol_start_date, hol_end_date));
-                //HolidayContent.addHolidayItem(holiday_name, holiday_details, hol_start_date, hol_end_date);
 
                 holidayName.setText("");
                 holidayDetails.setText("");

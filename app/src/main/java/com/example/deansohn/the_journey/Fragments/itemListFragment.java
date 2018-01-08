@@ -29,6 +29,8 @@ public class itemListFragment extends Fragment {
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
     private holiday_data_AO holidayDAO;
+    RecyclerView recyclerView;
+    MyItemRecyclerViewAdapter mAdapter;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -55,6 +57,7 @@ public class itemListFragment extends Fragment {
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
         }
+
     }
 
     @Override
@@ -65,18 +68,22 @@ public class itemListFragment extends Fragment {
         // Set the adapter
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
-            RecyclerView recyclerView = (RecyclerView) view;
-            if (mColumnCount <= 1) {
-                recyclerView.setLayoutManager(new LinearLayoutManager(context));
-            } else {
-                recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
-            }
-            holidayDAO = new holiday_data_AO(context);
-            //recyclerView.setAdapter(new MyItemRecyclerViewAdapter(HolidayContent.HOLIDAY_ITEMS, mListener));
-            //recyclerView.setAdapter(new MyItemRecyclerViewAdapter(holidayDAO.getHolidays(), mListener));
-            recyclerView.setAdapter(new MyItemRecyclerViewAdapter(HolidayData.getInstance(context).getHolidays()
-                    , mListener));
+            if (mAdapter == null) {
+                recyclerView = (RecyclerView) view;
 
+                if (mColumnCount <= 1) {
+                    recyclerView.setLayoutManager(new LinearLayoutManager(context));
+                } else {
+                    recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
+                }
+                holidayDAO = new holiday_data_AO(context);
+                mAdapter = new MyItemRecyclerViewAdapter(HolidayData.getInstance(context).getHolidays()
+                        , mListener);
+                recyclerView.setAdapter(mAdapter);
+            } else {
+                mAdapter.replaceList(HolidayData.getInstance(context).getHolidays(), mListener);
+                mAdapter.notifyDataSetChanged();
+            }
         }
         return view;
     }

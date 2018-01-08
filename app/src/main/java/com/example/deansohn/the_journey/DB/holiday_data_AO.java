@@ -70,4 +70,13 @@ public class holiday_data_AO extends holiday_db_AO {
     public void deleteHolidayByID(int id) {
         database.delete(DBHelper.HOLIDAY_TABLE, DBHelper.ID_COLUMN+"="+id, null);
     }
+
+    public void updateHoliday(Holiday holiday, int id) {
+        ContentValues values = new ContentValues();
+        values.put(DBHelper.NAME_COLUMN, holiday.getHoliday_name());
+        values.put(DBHelper.HOLIDAY_DESCRIPTION, holiday.getHoliday_description());
+        values.put(DBHelper.HOLIDAY_STARTDATE, holiday.getHolStartDate());
+        values.put(DBHelper.HOLIDAY_ENDDATE, holiday.getHolEndDate());
+        database.update(DBHelper.HOLIDAY_TABLE, values,DBHelper.ID_COLUMN+"="+id, null);
+    }
 }
