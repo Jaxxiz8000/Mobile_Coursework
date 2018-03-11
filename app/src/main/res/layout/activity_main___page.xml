@@ -40,8 +40,15 @@
         android:id="@+id/place_list_launch_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/place_picker_btn_txt"
+        android:layout_gravity="center|left"
+        android:text="@string/place_list_btn_txt"
+        style="@style/Widget.AppCompat.Button.Colored"/>
+    <Button
+        android:id="@+id/gallery_launch_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|right"
+        android:text="@string/gallery_launch_btn_txt"
         style="@style/Widget.AppCompat.Button.Colored"/>
 
 </android.support.design.widget.CoordinatorLayout>

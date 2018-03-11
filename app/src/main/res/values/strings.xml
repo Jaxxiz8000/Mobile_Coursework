@@ -32,5 +32,14 @@
     <string name="click_fab_to_pick_your_place">Click FAB to pick your Place</string>
     <string name="add_place">Add Place</string>
     <string name="title_activity_places_list_activity">Places_list_activity</string>
+    <string name="title_activity_photo_gallery_activity">Photo_gallery_activity</string>
+
+    <string name="btnIntend">Take (big) Picture</string>
+    <string name="btnIntendS">Take (small) Picture</string>
+    <string name="btnIntendV">Take Video</string>
+    <string name="cannot">Cannot</string>
+    <string name="album_name">CameraSample</string>
+    <string name="place_list_btn_txt">Place List</string>
+    <string name="gallery_launch_btn_txt">Launch Gallery</string>
 
 </resources>

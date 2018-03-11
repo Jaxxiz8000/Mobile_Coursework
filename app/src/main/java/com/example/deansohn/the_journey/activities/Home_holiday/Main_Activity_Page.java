@@ -15,6 +15,7 @@ import com.example.deansohn.the_journey.Fragments.itemListFragment;
 import com.example.deansohn.the_journey.Fragments.item_detailsFragment;
 import com.example.deansohn.the_journey.Model.Home_holiday.Holiday;
 import com.example.deansohn.the_journey.R;
+import com.example.deansohn.the_journey.activities.Gallery.Photo_gallery_activity;
 import com.example.deansohn.the_journey.activities.Places.Place_Picker_activity;
 import com.example.deansohn.the_journey.activities.Places.Places_list_activity;
 
@@ -44,6 +45,11 @@ public class Main_Activity_Page extends AppCompatActivity
 
     private void launchActivityPlaceList() {
         Intent intent = new Intent(this, Places_list_activity.class);
+        startActivity(intent);
+    }
+
+    private void launchGalleryActivity() {
+        Intent intent = new Intent(this, Photo_gallery_activity.class);
         startActivity(intent);
     }
 
@@ -107,6 +113,7 @@ public class Main_Activity_Page extends AppCompatActivity
 
         final Button launchPlacePicker = findViewById(R.id.place_Picker_btn);
         final Button launchPlaceList = findViewById(R.id.place_list_launch_btn);
+        final Button launchGallery = findViewById(R.id.gallery_launch_btn);
 
         launchPlacePicker.setOnClickListener(new View.OnClickListener() {
 
@@ -132,6 +139,14 @@ public class Main_Activity_Page extends AppCompatActivity
                 launchActivityPlaceList();
             }
 
+        });
+
+        launchGallery.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                launchGalleryActivity();
+            }
         });
 
         //Create new Fragment to be placed in activity layout

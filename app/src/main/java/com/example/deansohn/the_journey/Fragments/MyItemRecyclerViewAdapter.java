@@ -50,7 +50,7 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
         String startDate = mValues.get(position).getHolStartDate();
         String endDate = mValues.get(position).getHolEndDate();
 
-        holder.mIdView.setText(id);
+        //holder.mIdView.setText(id);
         holder.mContentView.setText(mValues.get(position).getHoliday_name());
         Log.d("Value of mIdView: ", " " + id);
 
