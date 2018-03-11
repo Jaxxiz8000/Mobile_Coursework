@@ -13,10 +13,12 @@ import android.widget.TextView;
 
 import com.example.deansohn.the_journey.DB.holiday_data_AO;
 import com.example.deansohn.the_journey.Fragments.DatePickerFragment;
+import com.example.deansohn.the_journey.Fragments.PlacesListFragment;
+import com.example.deansohn.the_journey.Fragments.dummy.DummyContent;
 import com.example.deansohn.the_journey.Model.Home_holiday.Holiday;
 import com.example.deansohn.the_journey.R;
 
-public class Holiday_Edit_details_activity extends AppCompatActivity implements DatePickerFragment.datePickerListener  {
+public class Holiday_Edit_details_activity extends AppCompatActivity implements DatePickerFragment.datePickerListener, PlacesListFragment.OnListFragmentInteractionListener{
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -133,6 +135,17 @@ public class Holiday_Edit_details_activity extends AppCompatActivity implements 
 
             }
         });
+
+        // Create a new Fragment to be placed in the activity layout
+        PlacesListFragment firstFragment = new PlacesListFragment();
+
+        // In case this activity was started with special instructions from an
+        // Intent, pass the Intent's extras to the fragment as arguments
+        firstFragment.setArguments(getIntent().getExtras());
+
+        // Add the fragment to the 'fragment_container' FrameLayout
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.fragment_container, firstFragment).commit();
     }
 
     private Holiday setHoliday(String holName, String description, String startDate, String endDate) {
@@ -158,5 +171,10 @@ public class Holiday_Edit_details_activity extends AppCompatActivity implements 
             holStartDate.setText(date);
         else if (dateEndText)
             holEndDate.setText(date);
+    }
+
+    @Override
+    public void onListFragmentInteraction(DummyContent.DummyItem item) {
+
     }
 }

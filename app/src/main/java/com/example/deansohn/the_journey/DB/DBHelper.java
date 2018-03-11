@@ -50,8 +50,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     private static final String CREATE_PLACE_TABLE = "CREATE TABLE "
             + PLACES_TABLE + "(" + PLACES_ID_COLUMN + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-            + PLACES_NAME_COLUMN + " TEXT, " + PLACES_ADDRESS + " TEXT, "
-            + ASSOCIATION_KEY + "TEXT" + ")";
+            + PLACES_NAME_COLUMN + " TEXT, " + PLACES_ADDRESS + " TEXT" + ")";
 
     private static final String CREATE_PLACES_HOLIDAY_ASSOCIATION_TABLE = "CREATE TABLE "
             + PLACES_HOLIDAY_ASSOCIATION_TABLE + "(" + PLACES_ID_NUM + "INTEGER PRIMARY KEY,"

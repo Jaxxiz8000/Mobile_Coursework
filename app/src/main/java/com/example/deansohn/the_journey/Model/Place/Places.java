@@ -18,6 +18,10 @@ public class Places {
         this.association_key = association_key;
     }
 
+    public String getPlaces_name() {
+        return places_name;
+    }
+
     private String places_address;
 
     public void setPlaces_id(Integer places_id) {

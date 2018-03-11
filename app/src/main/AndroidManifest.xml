@@ -45,6 +45,10 @@
         <activity
             android:name=".activities.Places.Place_Picker_activity"
             android:label="@string/title_activity_place__picker_activity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.Places.Places_list_activity"
+            android:label="@string/title_activity_places_list_activity"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

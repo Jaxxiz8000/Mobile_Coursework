@@ -84,7 +84,7 @@ public class Place_Picker_activity extends AppCompatActivity implements GoogleAp
                 String place_holiday_association = holiday_name.getText().toString();
 
                 String create_key = createRandomKey();
-                places_data_ao.addPlaces(places_Name, places_address, create_key);
+                places_data_ao.addPlaces(places_Name, places_address);
                 //places_data_ao.addAssociation(create_key, place_holiday_association);
 
                 placeName.setText("");
