@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.deansohn.the_journey.Main_Activity_Page">
+    tools:context="com.example.deansohn.the_journey.activities.Home_holiday.Main_Activity_Page">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -23,11 +23,19 @@
     <include layout="@layout/content_main__activity__page" />
 
     <Button
-        android:id="@+id/add_holiday_btn_text"
+    android:id="@+id/add_holiday_btn_text"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom|left"
+    android:text="@string/add_holiday_btn_text"
+    style="@style/Widget.AppCompat.Button.Colored"/>
+
+    <Button
+        android:id="@+id/place_Picker_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|center"
-        android:text="@string/add_holiday_btn_text"
+        android:layout_gravity="bottom|right"
+        android:text="@string/place_picker_btn_txt"
         style="@style/Widget.AppCompat.Button.Colored"/>
 
 </android.support.design.widget.CoordinatorLayout>

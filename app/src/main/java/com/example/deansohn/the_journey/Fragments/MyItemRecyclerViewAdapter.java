@@ -9,10 +9,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.deansohn.the_journey.Fragments.itemListFragment.OnListFragmentInteractionListener;
-import com.example.deansohn.the_journey.Model.Holiday;
+import com.example.deansohn.the_journey.Model.Home_holiday.Holiday;
 import com.example.deansohn.the_journey.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

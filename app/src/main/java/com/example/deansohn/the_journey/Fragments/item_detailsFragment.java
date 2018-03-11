@@ -1,16 +1,12 @@
 package com.example.deansohn.the_journey.Fragments;
 
-import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,7 +16,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.deansohn.the_journey.DB.holiday_data_AO;
-import com.example.deansohn.the_journey.Model.Holiday;
+import com.example.deansohn.the_journey.Model.Home_holiday.Holiday;
 import com.example.deansohn.the_journey.R;
 
 /**

@@ -1,25 +1,20 @@
-package com.example.deansohn.the_journey;
+package com.example.deansohn.the_journey.activities.Home_holiday;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.deansohn.the_journey.DB.holiday_data_AO;
 import com.example.deansohn.the_journey.Fragments.DatePickerFragment;
-import com.example.deansohn.the_journey.Fragments.item_detailsFragment;
-import com.example.deansohn.the_journey.Model.Holiday;
+import com.example.deansohn.the_journey.Model.Home_holiday.Holiday;
+import com.example.deansohn.the_journey.R;
 
 public class Holiday_Edit_details_activity extends AppCompatActivity implements DatePickerFragment.datePickerListener  {
 

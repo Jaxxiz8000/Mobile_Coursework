@@ -1,13 +1,9 @@
-package com.example.deansohn.the_journey;
+package com.example.deansohn.the_journey.activities.Home_holiday;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,9 +13,9 @@ import android.widget.Toast;
 import com.example.deansohn.the_journey.DB.DBHelper;
 import com.example.deansohn.the_journey.Fragments.itemListFragment;
 import com.example.deansohn.the_journey.Fragments.item_detailsFragment;
-import com.example.deansohn.the_journey.Model.Holiday;
-
-import java.io.Serializable;
+import com.example.deansohn.the_journey.Model.Home_holiday.Holiday;
+import com.example.deansohn.the_journey.R;
+import com.example.deansohn.the_journey.activities.Places.Place_Picker_activity;
 
 public class Main_Activity_Page extends AppCompatActivity
         implements itemListFragment.OnListFragmentInteractionListener,
@@ -30,12 +26,18 @@ public class Main_Activity_Page extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mHelper = new DBHelper(this);
         createAndRestartCode();
 
     }
 
     private void launchActivityAddHoliday() {
         Intent intent = new Intent(this, AddHolidayForm.class);
+        startActivity(intent);
+    }
+
+    private void launchActivityPlacePicker() {
+        Intent intent = new Intent(this, Place_Picker_activity.class);
         startActivity(intent);
     }
 
@@ -95,9 +97,17 @@ public class Main_Activity_Page extends AppCompatActivity
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        mHelper = new DBHelper(this);
-
         Button launchAddholiday = findViewById(R.id.add_holiday_btn_text);
+
+        final Button launchPlacePicker = findViewById(R.id.place_Picker_btn);
+
+        launchPlacePicker.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                launchActivityPlacePicker();
+            }
+        });
 
         launchAddholiday.setOnClickListener(new View.OnClickListener() {
 
