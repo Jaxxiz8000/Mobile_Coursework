@@ -31,5 +31,6 @@
     <string name="title_activity_place__picker_activity">Place_Picker_activity</string>
     <string name="click_fab_to_pick_your_place">Click FAB to pick your Place</string>
     <string name="add_place">Add Place</string>
+    <string name="title_activity_places_list_activity">Places_list_activity</string>
 
 </resources>

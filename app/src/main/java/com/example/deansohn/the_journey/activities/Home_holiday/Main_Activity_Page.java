@@ -16,6 +16,7 @@ import com.example.deansohn.the_journey.Fragments.item_detailsFragment;
 import com.example.deansohn.the_journey.Model.Home_holiday.Holiday;
 import com.example.deansohn.the_journey.R;
 import com.example.deansohn.the_journey.activities.Places.Place_Picker_activity;
+import com.example.deansohn.the_journey.activities.Places.Places_list_activity;
 
 public class Main_Activity_Page extends AppCompatActivity
         implements itemListFragment.OnListFragmentInteractionListener,
@@ -38,6 +39,11 @@ public class Main_Activity_Page extends AppCompatActivity
 
     private void launchActivityPlacePicker() {
         Intent intent = new Intent(this, Place_Picker_activity.class);
+        startActivity(intent);
+    }
+
+    private void launchActivityPlaceList() {
+        Intent intent = new Intent(this, Places_list_activity.class);
         startActivity(intent);
     }
 
@@ -100,6 +106,7 @@ public class Main_Activity_Page extends AppCompatActivity
         Button launchAddholiday = findViewById(R.id.add_holiday_btn_text);
 
         final Button launchPlacePicker = findViewById(R.id.place_Picker_btn);
+        final Button launchPlaceList = findViewById(R.id.place_list_launch_btn);
 
         launchPlacePicker.setOnClickListener(new View.OnClickListener() {
 
@@ -114,6 +121,15 @@ public class Main_Activity_Page extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 launchActivityAddHoliday();
+            }
+
+        });
+
+        launchPlaceList.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                launchActivityPlaceList();
             }
 
         });
