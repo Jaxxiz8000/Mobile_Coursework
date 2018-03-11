@@ -1,4 +1,4 @@
-package com.example.deansohn.the_journey.Model;
+package com.example.deansohn.the_journey.Model.Home_holiday;
 
 import android.content.Context;
 

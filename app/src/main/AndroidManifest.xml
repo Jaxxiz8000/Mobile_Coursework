@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.deansohn.the_journey">
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Main_Activity_Page"
+            android:name=".activities.Home_holiday.Main_Activity_Page"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -20,12 +24,27 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".AddHolidayForm"
+            android:name=".activities.Home_holiday.AddHolidayForm"
             android:label="@string/title_activity_add_holiday_form"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Holiday_Edit_details_activity"
+            android:name=".activities.Home_holiday.Holiday_Edit_details_activity"
             android:label="@string/title_activity_holiday__edit_details_activity"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCCYnYEwLIFbr6v9Q79PFG8wAocJi0lVlQ" />
+
+        <activity
+            android:name=".activities.Places.Maps_activity"
+            android:label="@string/title_activity_maps_activity" />
+        <activity
+            android:name=".activities.Places.Place_Picker_activity"
+            android:label="@string/title_activity_place__picker_activity"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

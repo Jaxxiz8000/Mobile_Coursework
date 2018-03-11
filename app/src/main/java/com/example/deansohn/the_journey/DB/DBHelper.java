@@ -19,6 +19,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "the_journey_db";
     private static final int DATABASE_VERSION = 1;
 
+    // Variables used to create Holiday table
     static final String HOLIDAY_TABLE = "holiday";
 
     static final String ID_COLUMN = "id";
@@ -27,12 +28,38 @@ public class DBHelper extends SQLiteOpenHelper {
     static final String HOLIDAY_ENDDATE = "holiday_endDate";
     static final String HOLIDAY_DESCRIPTION = "holiday_description";
 
+    // Variables used to create Places table
+    static final String PLACES_TABLE = "places_table";
+
+    static final String PLACES_ID_COLUMN = "placeid";
+    static final String PLACES_NAME_COLUMN = "places_name";
+//    static final String PLACES_LAT = "places_lat";
+//    static final String PLACES_LONG = "places_long";
+    static final String ASSOCIATION_KEY = "association_key";
+    static final String PLACES_ADDRESS = "places_address";
+
+    //Variables for creating table to associate a place with a holiday
+    private static final String PLACES_HOLIDAY_ASSOCIATION_TABLE = "places_holiday_association";
+    private static final String PLACES_ID_NUM = "placesid";
+    private static final String HOLIDAY_ID = "holidayid";
+
     private static final String CREATE_HOLIDAY_TABLE = "CREATE TABLE "
             + HOLIDAY_TABLE + "(" + ID_COLUMN + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + NAME_COLUMN + " TEXT, " + HOLIDAY_DESCRIPTION + " TEXT, "
             + HOLIDAY_STARTDATE + " STRING, " + HOLIDAY_ENDDATE + " STRING"  + ")";
 
-    private static final String DROP_TABLE = "DROP TABLE IF EXISTS " + HOLIDAY_TABLE;
+    private static final String CREATE_PLACE_TABLE = "CREATE TABLE "
+            + PLACES_TABLE + "(" + PLACES_ID_COLUMN + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + PLACES_NAME_COLUMN + " TEXT, " + PLACES_ADDRESS + " TEXT, "
+            + ASSOCIATION_KEY + "TEXT" + ")";
+
+    private static final String CREATE_PLACES_HOLIDAY_ASSOCIATION_TABLE = "CREATE TABLE "
+            + PLACES_HOLIDAY_ASSOCIATION_TABLE + "(" + PLACES_ID_NUM + "INTEGER PRIMARY KEY,"
+            + HOLIDAY_ID + "INTEGER" + ")";
+
+
+    private static final String DROP_HOLIDAY_TABLE = "DROP TABLE IF EXISTS " + HOLIDAY_TABLE;
+    private static final String DROP_PLACE_TABLE = "DROP TABLE IF EXISTS " + PLACES_TABLE;
 
     private static DBHelper instance;
 
@@ -47,7 +74,13 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onCreate(SQLiteDatabase db) { db.execSQL(CREATE_HOLIDAY_TABLE);}
+    public void onCreate(SQLiteDatabase db) {
+
+        db.execSQL(CREATE_HOLIDAY_TABLE);
+        db.execSQL(CREATE_PLACE_TABLE);
+        db.execSQL(CREATE_PLACES_HOLIDAY_ASSOCIATION_TABLE);
+
+    }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -60,5 +93,9 @@ public class DBHelper extends SQLiteOpenHelper {
         super.onOpen(db);
     }
 
-    public void onDestroy(SQLiteDatabase db) { db.execSQL(DROP_TABLE);}
+    public void onDestroy(SQLiteDatabase db) {
+    db.execSQL(DROP_HOLIDAY_TABLE);
+    db.execSQL(DROP_PLACE_TABLE);
+
+    }
 }

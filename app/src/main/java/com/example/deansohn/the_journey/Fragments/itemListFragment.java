@@ -11,8 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.deansohn.the_journey.DB.holiday_data_AO;
-import com.example.deansohn.the_journey.Model.Holiday;
-import com.example.deansohn.the_journey.Model.HolidayData;
+import com.example.deansohn.the_journey.Model.Home_holiday.Holiday;
+import com.example.deansohn.the_journey.Model.Home_holiday.HolidayData;
 import com.example.deansohn.the_journey.R;
 
 /**

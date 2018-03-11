@@ -24,5 +24,12 @@
     <string name="updateHolButton">Update Holiday</string>
     <string name="title_activity_holiday__edit_details_activity">Holiday_Edit_details_activity
     </string>
+    <string name="title_activity_place_autocomplete_activity">Place_autocomplete_activity</string>
+    <string name="title_activity_place_picker_">PlacePicker_Activity</string>
+    <string name="place_picker_btn_txt">Launch Place Picker</string>
+    <string name="title_activity_maps_activity">Map</string>
+    <string name="title_activity_place__picker_activity">Place_Picker_activity</string>
+    <string name="click_fab_to_pick_your_place">Click FAB to pick your Place</string>
+    <string name="add_place">Add Place</string>
 
 </resources>

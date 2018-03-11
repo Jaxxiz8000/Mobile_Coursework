@@ -1,4 +1,4 @@
-package com.example.deansohn.the_journey;
+package com.example.deansohn.the_journey.activities.Home_holiday;
 
 import android.annotation.SuppressLint;
 import android.support.v4.app.DialogFragment;
@@ -9,7 +9,6 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,9 +16,8 @@ import android.widget.TextView;
 
 import com.example.deansohn.the_journey.DB.holiday_data_AO;
 import com.example.deansohn.the_journey.Fragments.DatePickerFragment;
-import com.example.deansohn.the_journey.Model.Holiday;
-
-import java.util.Date;
+import com.example.deansohn.the_journey.Model.Home_holiday.Holiday;
+import com.example.deansohn.the_journey.R;
 
 public class AddHolidayForm extends AppCompatActivity implements DatePickerFragment.datePickerListener {
 

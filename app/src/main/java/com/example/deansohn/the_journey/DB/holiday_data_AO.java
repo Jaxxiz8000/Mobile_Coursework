@@ -8,14 +8,13 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
-import com.example.deansohn.the_journey.Model.Holiday;
+import com.example.deansohn.the_journey.Model.Home_holiday.Holiday;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class holiday_data_AO extends holiday_db_AO {
+public class holiday_data_AO extends db_AO {
 
     private static final SimpleDateFormat formatter = new SimpleDateFormat(
             "dd-MM-yyyy", Locale.ENGLISH);
@@ -54,13 +53,6 @@ public class holiday_data_AO extends holiday_db_AO {
             holiday.setHoliday_description(cursor.getString(2));
             holiday.setHolStartDate(cursor.getString(3));
             holiday.setHolEndDate(cursor.getString(4));
-//            try {
-//
-//            } catch (ParseException e) {
-//                holiday.setHolStartDate(null);
-//                holiday.setHolEndDate(null);
-//            }
-
             holidays.add(holiday);
         }
         return holidays;
