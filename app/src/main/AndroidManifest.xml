@@ -49,7 +49,15 @@
         <activity
             android:name=".activities.Places.Places_list_activity"
             android:label="@string/title_activity_places_list_activity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.Gallery.Photo_gallery_activity"
+            android:label="@string/title_activity_photo_gallery_activity"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+
+        <meta-data
+            android:name="android.support.FILE_PROVIDER_PATHS"
+            android:resource="@xml/filepaths"></meta-data>
     </application>
 
 </manifest>
